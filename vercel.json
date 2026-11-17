@@ -1,16 +1,19 @@
 {
   "version": 2,
   "builds": [
-    { "src": "**/*", "use": "@vercel/static" }
+    { "src": "index.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.html" }
   ],
   "headers": [
     {
-      "source": "/(.*)\\.png",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000" }]
-    },
-    {
-      "source": "/(.*)\\.jpeg",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000" }]
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
+        { "key": "Pragma", "value": "no-cache" },
+        { "key": "Expires", "value": "0" }
+      ]
     }
   ]
 }
